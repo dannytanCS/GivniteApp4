@@ -20,8 +20,9 @@ class DescriptionViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     @IBOutlet weak var bookPrice: UITextField!
     
-    @IBOutlet weak var bookDescription: UITextView!
     
+    @IBOutlet weak var bookDescription: UITextView!
+
     
     var image = UIImage()
     var imageName = ""

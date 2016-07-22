@@ -25,6 +25,10 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     var imageIndex: Int = 0
     var maxImages: Int = 0
     
+    //CHAT ADDITION
+    //CHAT ADDITION
+    var chatUID : String?
+    
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var bookName: UITextField!
     @IBOutlet weak var bookPrice: UITextField!
@@ -213,6 +217,27 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             destinationVC.otherUser = self.otherUser
         
         }
+          
+                
+                
+        else if segue.identifier == "shortToChat"{
+            let destinationNavVC = segue.destinationViewController as! UINavigationController
+            let destVC = destinationNavVC.viewControllers[0] as! ChatsTableViewController
+            destVC.fbUID = ""
+            destVC.userName = FIRAuth.auth()?.currentUser?.displayName
+            destVC.firebaseUID = FIRAuth.auth()?.currentUser?.uid
+            destVC.fromMarketPlace = true
+            destVC.chatUID = self.chatUID
+        }
+        
+        if segue.identifier == "cutToChat"{
+            let chatVC = segue.destinationViewController as! SingleChatViewController
+            chatVC.senderId = FIRAuth.auth()?.currentUser?.uid
+            chatVC.senderDisplayName = FIRAuth.auth()?.currentUser?.displayName
+            chatVC.chatUID = self.chatUID
+            chatVC.fromMarketPlace = true
+        }
+
 
     }
     
@@ -444,6 +469,10 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
 
     
     
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -482,6 +511,78 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             self.view.frame.origin.y += keyboardSize.height - offset.height
         }
     }
+    
+    
+    @IBAction func chatButton(sender: AnyObject) {
+        //NEED 4 things for this function to run
+        // 1- Current user's uid and name  && 2 - other user's uid and name
+        
+        
+        let thisUserId = FIRAuth.auth()?.currentUser?.uid
+        let thisUsername = FIRAuth.auth()?.currentUser?.displayName
+        
+        //NOTE this should be like otherUserId = self.otherUserId ( should be easily accesible if you are already showing the item by the user )
+        let otherUserId = self.userID
+        let otherUsername = self.userName
+        
+        print(otherUserId)
+        
+        
+        //IGNORE THE FOLLOWING COMMENTS
+        //        //running call anyways
+        //
+        //        getUserName((FIRAuth.auth()?.currentUser?.uid)!) { (name) -> Void in
+        //            print("called in function")
+        //            otherUserName = name
+        //        }
+        //
+        //        print("called outside function")
+        
+        
+        var newChatId = "\(thisUserId!)&&\(otherUserId!)"
+        let otherNewChatId = "\(otherUserId!)&&\(thisUserId!)"
+        self.chatUID = newChatId
+        
+        
+        //uncomment this line or make a similar reference
+        let chatRootRef = FIRDatabase.database().reference().child("user")
+        
+        //Checking if the chat already exists
+        
+        chatRootRef.child(thisUserId!).child("chats").observeSingleEventOfType(FIRDataEventType.Value, withBlock: {snapshot in
+            if snapshot.hasChild(newChatId) || snapshot.hasChild(otherNewChatId){
+                if snapshot.hasChild(otherNewChatId){
+                    newChatId = otherNewChatId
+                    self.chatUID = newChatId
+                }
+                self.performSegueWithIdentifier("shortToChat", sender: self)
+            }else{
+                chatRootRef.child(thisUserId!).child("chats").child(newChatId).child("lastMessage").setValue("")
+                chatRootRef.child(thisUserId!).child("chats").child(newChatId).child("otherUID").setValue(otherUserId)
+                chatRootRef.child(thisUserId!).child("chats").child(newChatId).child("otherUsername").setValue(otherUsername)
+                
+                chatRootRef.child(otherUserId!).child("chats").child(newChatId).child("lastMessage").setValue("")
+                chatRootRef.child(otherUserId!).child("chats").child(newChatId).child("otherUID").setValue(thisUserId)
+                chatRootRef.child(otherUserId!).child("chats").child(newChatId).child("otherUsername").setValue(thisUsername)
+                
+                //adding a new starter message by the person who started the chat
+                let chatRef = FIRDatabase.database().reference().child("chats")
+                chatRef.child(newChatId).child("0").child("senderId").setValue(thisUserId)
+                let dateformatter = NSDateFormatter()
+                dateformatter.timeZone = NSTimeZone(abbreviation: "GMT")
+                dateformatter.dateFormat = "MMM dd, yyyy HH:mm zzz"
+                chatRef.child(newChatId).child("0").child("sentDate").setValue(dateformatter.stringFromDate(NSDate()))
+                chatRef.child(newChatId).child("0").child("text").setValue("Hey!")
+                
+                self.performSegueWithIdentifier("shortCutChat", sender: self)
+            }
+        })
+    }
+    
+    
+ }
+    
+    
 
     /*
     // MARK: - Navigation
@@ -493,4 +594,4 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     }
     */
 
-}
+

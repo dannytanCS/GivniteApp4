@@ -593,7 +593,7 @@
                                     <action selector="cameraPushed:" destination="WKj-cM-742" eventType="touchUpInside" id="G1j-Sh-s2e"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" bounces="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ufM-hV-GjE" customClass="RSKPlaceholderTextView" customModule="Givnite" customModuleProvider="target">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" bounces="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ufM-hV-GjE">
                                 <rect key="frame" x="10" y="191" width="362" height="66"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1062,7 +1062,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Z3c-aQ-4S8"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fUa-lx-rTS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dh0-6V-2jh">
@@ -1218,6 +1218,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPC-vf-230" customClass="SpringButton" customModule="Givnite" customModuleProvider="target">
                                 <rect key="frame" x="152" y="596" width="71" height="71"/>
                                 <state key="normal" title="Button" image="Message"/>
+                                <connections>
+                                    <action selector="chatButton:" destination="jcF-Ad-o52" eventType="touchUpInside" id="8ly-rh-zcP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1261,11 +1264,12 @@
                         <outlet property="pageControl" destination="e3M-AC-fMY" id="7lH-hA-lS7"/>
                         <outlet property="settingButton" destination="J9l-si-ZLL" id="NK9-Tk-TfL"/>
                         <outlet property="userNameLabel" destination="LF6-Cb-Uct" id="HqX-lI-fxn"/>
+                        <segue destination="LEm-Wi-zgq" kind="modal" identifier="shortToChat" id="hwb-wp-hml"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiM-eu-O0r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1354.5" y="2470.5"/>
+            <point key="canvasLocation" x="1426.5" y="2470.5"/>
         </scene>
         <!--Description View Controller-->
         <scene sceneID="ZJm-Fb-S4B">
@@ -1366,21 +1370,6 @@
                                     <constraint firstItem="RpL-tk-C0c" firstAttribute="top" secondItem="Akh-2P-iZm" secondAttribute="top" constant="13" id="ww5-Ve-6an"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xQq-UM-R58" customClass="RSKPlaceholderTextView" customModule="Givnite">
-                                <rect key="frame" x="16" y="535" width="335" height="82"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="82" id="CqQ-ps-gbX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Optional* Share how this could be useful!"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" red="0.36862745099999999" green="0.36862745099999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8AD-3O-6At">
                                 <rect key="frame" x="320" y="612" width="35" height="35"/>
                                 <constraints>
@@ -1423,6 +1412,21 @@
                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="currentPageIndicatorTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xQq-UM-R58">
+                                <rect key="frame" x="20" y="532" width="335" height="82"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="82" id="CqQ-ps-gbX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Optional* Share how this could be useful!"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" red="0.36862745099999999" green="0.36862745099999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1453,7 +1457,7 @@
                     <navigationItem key="navigationItem" id="p0v-WG-EWM"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="bookDescription" destination="xQq-UM-R58" id="hzh-yR-rjU"/>
+                        <outlet property="bookDescription" destination="xQq-UM-R58" id="esG-gq-ySC"/>
                         <outlet property="bookName" destination="TqJ-rz-c4L" id="NTC-6u-UQX"/>
                         <outlet property="bookPrice" destination="RpL-tk-C0c" id="ui5-Bn-Vgh"/>
                         <outlet property="doneButton" destination="v2M-Vq-NW7" id="vCB-Pf-i0U"/>
@@ -1677,8 +1681,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Mgg-ae-R6I"/>
-        <segue reference="zUB-R1-gCs"/>
-        <segue reference="4FE-Dr-Dr8"/>
-        <segue reference="Ldv-4t-Rae"/>
+        <segue reference="4Fk-YX-ieg"/>
+        <segue reference="hwb-wp-hml"/>
+        <segue reference="qG4-99-uBB"/>
     </inferredMetricsTieBreakers>
 </document>
