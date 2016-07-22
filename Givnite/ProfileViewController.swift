@@ -314,6 +314,12 @@ class ProfileViewController: UIViewController, UITextViewDelegate,UICollectionVi
             destVC.userName = currentUserName
             destVC.firebaseUID = firebaseUID
         }
+        
+        else if segue.identifier == "showCamera" {
+            let destinationVC = segue.destinationViewController as! Camera
+            destinationVC.school = self.schoolNameLabel.text
+            destinationVC.major = self.majorLabel.text
+        }
     }
     
     
@@ -452,5 +458,9 @@ class ProfileViewController: UIViewController, UITextViewDelegate,UICollectionVi
         self.secondView.hidden = true
     }
 
+    
+    @IBAction func cameraPushed(sender: AnyObject) {
+        performSegueWithIdentifier("showCamera", sender: self)
+    }
     
 }

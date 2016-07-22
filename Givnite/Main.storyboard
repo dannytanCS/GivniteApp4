@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="500-Ps-34F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="500-Ps-34F">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -590,7 +590,7 @@
                                 </constraints>
                                 <state key="normal" image="AddButton"/>
                                 <connections>
-                                    <segue destination="vZO-F9-SpX" kind="modal" id="keF-9X-WCM"/>
+                                    <action selector="cameraPushed:" destination="WKj-cM-742" eventType="touchUpInside" id="G1j-Sh-s2e"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" bounces="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ufM-hV-GjE" customClass="RSKPlaceholderTextView" customModule="Givnite" customModuleProvider="target">
@@ -696,16 +696,16 @@
                                             <constraint firstAttribute="width" constant="103" id="0ee-NJ-93T"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Bob" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPE-Q3-5XA">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bob" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPE-Q3-5XA">
                                         <rect key="frame" x="156" y="29" width="219" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Contact" translatesAutoresizingMaskIntoConstraints="NO" id="90q-Fh-vqr">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Contact" translatesAutoresizingMaskIntoConstraints="NO" id="90q-Fh-vqr">
                                         <rect key="frame" x="130" y="78" width="14" height="20"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoN-cL-aij">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoN-cL-aij">
                                         <rect key="frame" x="156" y="49" width="154" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -715,13 +715,13 @@
                                         <rect key="frame" x="0.0" y="-44" width="375" height="46"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2W-Ue-4s4">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2W-Ue-4s4">
                                         <rect key="frame" x="156" y="77" width="219" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="School " translatesAutoresizingMaskIntoConstraints="NO" id="Uzb-kf-ZUU">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="School " translatesAutoresizingMaskIntoConstraints="NO" id="Uzb-kf-ZUU">
                                         <rect key="frame" x="126" y="31" width="22" height="18"/>
                                     </imageView>
                                 </subviews>
@@ -811,6 +811,7 @@
                         <segue destination="jcF-Ad-o52" kind="modal" identifier="showImage" id="5UY-9r-GII"/>
                         <segue destination="LEm-Wi-zgq" kind="custom" identifier="toChatsTableView" customClass="RightToLeft" customModule="Givnite" customModuleProvider="target" id="yDE-RF-xni"/>
                         <segue destination="sEY-U2-bM3" kind="custom" identifier="toMarketplace" customClass="LeftToRight" customModule="Givnite" customModuleProvider="target" id="4FE-Dr-Dr8"/>
+                        <segue destination="vZO-F9-SpX" kind="modal" identifier="showCamera" id="z7u-F7-K2c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t0e-Ez-k10" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1061,7 +1062,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Z3c-aQ-4S8"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fUa-lx-rTS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dh0-6V-2jh">
@@ -1463,7 +1464,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8f8-dE-URZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1754.5" y="2470.5"/>
+            <point key="canvasLocation" x="1910.5" y="2500.5"/>
         </scene>
         <!--Market Item View Controller-->
         <scene sceneID="vKG-2n-Yy4">
@@ -1675,9 +1676,9 @@
         <image name="Trash" width="81" height="84"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4Fk-YX-ieg"/>
-        <segue reference="qG4-99-uBB"/>
-        <segue reference="Ldv-4t-Rae"/>
         <segue reference="Mgg-ae-R6I"/>
+        <segue reference="zUB-R1-gCs"/>
+        <segue reference="4FE-Dr-Dr8"/>
+        <segue reference="Ldv-4t-Rae"/>
     </inferredMetricsTieBreakers>
 </document>

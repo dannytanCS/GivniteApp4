@@ -24,6 +24,9 @@ class Camera: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     var nameOfImage = ""
     
     var imageURL = ""
+    
+    var school: String?
+    var major:String?
 
     
     @IBOutlet weak var photoLibraryButton: UIButton!
@@ -92,6 +95,8 @@ class Camera: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         databaseRef.child("marketplace").child(imageName).child("images").child(imageName).setValue(FIRServerValue.timestamp())
         databaseRef.child("marketplace").child(imageName).child("time").setValue(FIRServerValue.timestamp())
         databaseRef.child("marketplace").child(imageName).child("user").setValue(user!.uid)
+         databaseRef.child("marketplace").child(imageName).child("major").setValue(major)
+         databaseRef.child("marketplace").child(imageName).child("school").setValue(school)
         self.captureSession?.stopRunning()
         if let uploadData = UIImageJPEGRepresentation(image, 0){
             profilePicRef.putData(uploadData, metadata: nil, completion: { (meta, error) in

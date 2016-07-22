@@ -139,8 +139,8 @@ class DescriptionViewController: UIViewController, UITextFieldDelegate, UITextVi
             
             self.databaseRef.child("user").child(self.user!.uid).child("items").child(self.imageName).removeValue()
             
-             self.performSegueWithIdentifier("mainMenu", sender: self)
-            
+            let profileViewController: UIViewController = self.storyboard!.instantiateViewControllerWithIdentifier("profile")
+            self.presentViewController(profileViewController, animated: false, completion: nil)
         }))
         
         
