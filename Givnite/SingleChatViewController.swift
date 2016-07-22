@@ -91,6 +91,7 @@ class SingleChatViewController: JSQMessagesViewController {
         chatRef.observeSingleEventOfType(FIRDataEventType.Value, withBlock: { (snapshot) -> Void in
             let snapshotDict = snapshot.valueInExportFormat() as? NSDictionary
             self.otherUID = snapshotDict?.valueForKey("otherUID") as? String
+            print(self.otherUID)
             self.otherUsername = snapshotDict?.valueForKey("otherUsername") as? String
             self.title = self.otherUsername
         })
@@ -215,6 +216,7 @@ class SingleChatViewController: JSQMessagesViewController {
         
         rootRef.child("user").child(senderId).child("chats").child(chatUID!).child("lastMessage").setValue(text)
         
+        print(otherUID)
         rootRef.child("user").child(otherUID!).child("chats").child(chatUID!).child("lastMessage").setValue(text)
     }
     

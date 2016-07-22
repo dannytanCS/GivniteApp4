@@ -260,7 +260,7 @@ class MarketItemViewController: UIViewController {
         //        print("called outside function")
         
         
-        let newChatId = "\(thisUserId!)&&\(otherUserId!)"
+        var newChatId = "\(thisUserId!)&&\(otherUserId!)"
         let otherNewChatId = "\(otherUserId!)&&\(thisUserId!)"
         self.chatUID = newChatId
         
@@ -272,6 +272,10 @@ class MarketItemViewController: UIViewController {
         
         chatRootRef.child(thisUserId!).child("chats").observeSingleEventOfType(FIRDataEventType.Value, withBlock: {snapshot in
             if snapshot.hasChild(newChatId) || snapshot.hasChild(otherNewChatId){
+                if snapshot.hasChild(otherNewChatId){
+                    newChatId = otherNewChatId
+                    self.chatUID = newChatId
+                }
                 self.performSegueWithIdentifier("shortCutChat", sender: self)
             }else{
                 chatRootRef.child(thisUserId!).child("chats").child(newChatId).child("lastMessage").setValue("")
@@ -294,7 +298,6 @@ class MarketItemViewController: UIViewController {
                 self.performSegueWithIdentifier("shortCutChat", sender: self)
             }
         })
-        
         
     }
     
