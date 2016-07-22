@@ -154,11 +154,19 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
                                 if let time2 = keyDictionary["time"]{
                                     if time == time2 as! Int {
                                         self.imageNameArray.append("\(key)")
-                                        if let bookName = keyDictionary["book name"] as? String {
-                                            self.bookNameArray.append(bookName)
-                                        }
-                                        else {
-                                            self.bookNameArray.append("")
+                                        if let searchable = keyDictionary["searchable"] as? NSDictionary {
+                                            if let bookName = searchable["book name"] as? String {
+                                                self.bookNameArray.append(bookName)
+                                            }
+                                            else {
+                                                self.bookNameArray.append("")
+                                            }
+                                            if let bookDescription  = searchable["description"] as? String {
+                                                self.descriptionArray.append(bookDescription)
+                                            }
+                                            else {
+                                                self.descriptionArray.append("")
+                                            }
                                         }
                                         if let bookPrice = keyDictionary["price"] as? String {
                                             self.bookPriceArray.append(bookPrice)
@@ -168,13 +176,6 @@ class MarketplaceViewController: UIViewController, UICollectionViewDelegate, UIC
                                         }
                                         if let userID = keyDictionary["user"] as? String {
                                             self.userArray.append(userID)
-                                        }
-                                        
-                                        if let bookDescription  = keyDictionary["description"] as? String {
-                                            self.descriptionArray.append(bookDescription)
-                                        }
-                                        else {
-                                            self.descriptionArray.append("")
                                         }
                                         
                                     }

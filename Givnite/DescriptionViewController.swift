@@ -52,8 +52,8 @@ class DescriptionViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     @IBAction func doneButtonClicked(sender: AnyObject) {
         databaseRef.child("marketplace").child(imageName).child("price").setValue(bookPrice.text)
-        databaseRef.child("marketplace").child(imageName).child("book name").setValue(bookName.text)
-        databaseRef.child("marketplace").child(imageName).child("description").setValue(bookDescription.text)
+        databaseRef.child("marketplace").child(imageName).child("searchable").child("book name").setValue(bookName.text)
+        databaseRef.child("marketplace").child(imageName).child("searchable").child("description").setValue(bookDescription.text)
     }
     
     
@@ -339,7 +339,10 @@ class DescriptionViewController: UIViewController, UITextFieldDelegate, UITextVi
                     
                 }
                 
-                imageView.image =  imageList[imageIndex]
+                
+                if imageIndex >= 0 {
+                    imageView.image =  imageList[imageIndex]
+                }
                 
             case UISwipeGestureRecognizerDirection.Left:
                 print("User swiped Left")
@@ -362,8 +365,9 @@ class DescriptionViewController: UIViewController, UITextFieldDelegate, UITextVi
                 
         
                 
-                
-                imageView.image = imageList[imageIndex]
+                if imageIndex <= imageList.count && imageList.count > 0 {
+                    imageView.image = imageList[imageIndex]
+                }
                 
                 
                 

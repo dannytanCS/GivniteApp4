@@ -179,12 +179,15 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             in
             
             // Get item information
-            if let bookName = snapshot.value!["book name"] as? String {
-                self.bookName.text = bookName
+            if let searchable = snapshot.value!["searchable"] as? NSDictionary {
+                if let bookName = searchable["book name"] as? String {
+                    self.bookName.text = bookName
+                }
+                if let bookDescription = searchable["description"] as? String {
+                    self.bookDescription.text = bookDescription
+                }
             }
-            if let bookDescription = snapshot.value!["description"] as? String {
-                self.bookDescription.text = bookDescription
-            }
+            
             if let bookPrice = snapshot.value!["price"] as? String {
                 self.bookPrice.text = bookPrice
             }
@@ -304,8 +307,9 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
                     
                 }
                                 
-                imageView.image =  imageList[imageIndex]
-                
+                if imageIndex >= 0 {
+                    imageView.image =  imageList[imageIndex]
+                }
                 
             case UISwipeGestureRecognizerDirection.Left:
                 print("User swiped Left")
@@ -321,7 +325,10 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
                     imageIndex = 0
                     self.pageControl.currentPage = 0
                 }
-                imageView.image = imageList[imageIndex]
+                
+                if imageIndex <= imageList.count && imageList.count > 0 {
+                    imageView.image = imageList[imageIndex]
+                }
             default:
                 break //stops the code/codes nothing.
                 
@@ -425,9 +432,9 @@ class ItemViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         self.bookPrice.userInteractionEnabled = false
         self.bookName.userInteractionEnabled = false
         
-        self.databaseRef.child("marketplace").child(imageName!).child("book name").setValue(bookName.text)
+        self.databaseRef.child("marketplace").child(imageName!).child("searchable").child("book name").setValue(bookName.text)
         self.databaseRef.child("marketplace").child(imageName!).child("price").setValue(bookPrice.text)
-        self.databaseRef.child("marketplace").child(imageName!).child("description").setValue(bookDescription.text)
+        self.databaseRef.child("marketplace").child(imageName!).child("searchable").child("description").setValue(bookDescription.text)
         
         doneButton.hidden = true
         settingButton.hidden = false
